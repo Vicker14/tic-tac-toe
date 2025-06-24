@@ -4,8 +4,9 @@ This project is a browser-based implementation of the classic Tic-Tac-Toe game.
 
 ## Results
 
-To preview the live result, click [this link]()
-
+To preview the live result, click [this link](https://vicker14.github.io/tic-tac-toe/)
+  
+![Screenshot of Tic-Tac-Toe game](./preview-img.png)
 
 ## Features
 
