@@ -55,6 +55,8 @@ const GameController = (() => {
 
             if (hasWinner()) {
                 console.log(`The winner is ${currentPlayer.pName}`)
+                currentPlayer.playerWins++;
+                displayPlayers();
                 GameController.resetGame();
             } else switchTurn();
         }
@@ -85,5 +87,15 @@ const GameController = (() => {
         return false;
     }
 
-    return {playRound, resetGame}
+    const displayPlayers = () => {
+        const p1 = document.querySelector("#player1")
+        const p2 = document.querySelector("#player2")
+        
+        p1.textContent = `${player1.mark} ${player1.pName}: ${player1.playerWins}`
+        p2.textContent = `${player2.mark} ${player2.pName}: ${player2.playerWins}`
+    }
+
+    return {playRound, resetGame, displayPlayers}
 }) ();
+
+GameController.displayPlayers();
