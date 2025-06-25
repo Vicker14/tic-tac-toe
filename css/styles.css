@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap');
 
 :root {
-    --light-color: #ffc927;
-    --dark-color: #ff4d4d;
+    --color-black: #1e1e1e;
+    --color-yellow: #ffc927;
+    --color-red: #ff4d4d;
+    --color-green: #2ecc71;
+    --color-blue: #3498db;
     --white-light-color: #eee;
     --white-dark-color: #ddd;
+    
 }
 
-* {
+*, body{
     font-family: "Martian Mono";
     font-weight: 300;
+    
     background-color: var(--white-dark-color);
+    color: var(--color-black);
     margin: 0;
     padding: 0;
 }
@@ -35,14 +41,14 @@
 }
 
 .controls button:first-child {
-    --hover-color: var(--light-color);
+    --hover-color: var(--color-yellow);
 }
 .controls button:last-child {
-    --hover-color: var(--dark-color);
+    --hover-color: var(--color-red);
 }
 
 .controls button {
-    background-color: var(--white-light-color);
+    background-color: var(--hover-color);
     padding: 0.5rem 2rem;
     margin: 1rem;
     border: 0;
@@ -52,8 +58,7 @@
     font-weight: 600;
 }
 .controls button:hover {
-    cursor: pointer;
-    background-color: var(--hover-color);
+    cursor: pointer;;
 }
 
 .gameboard {
@@ -63,4 +68,19 @@
     background-color: var(--white-light-color);
 
     margin: 5rem;
+}
+
+#player1 {
+    --shadow-color: var(--color-green);
+}
+#player2 {
+    --shadow-color: var(--color-blue);
+}
+
+
+.player-info div {
+    font-size: 3em;
+    margin: 1rem;
+
+    box-shadow: 0.4rem 0.4rem var(--shadow-color);
 }
