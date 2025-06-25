@@ -1,6 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap');
 
-body {
+:root {
+    --light-color: #ffc927;
+    --dark-color: #ff4d4d;
+    --white-light-color: #eee;
+    --white-dark-color: #ddd;
+}
+
+* {
     font-family: "Martian Mono";
     font-weight: 300;
+    background-color: var(--white-dark-color);
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: var(--white-light-color);
+    font-weight: 600;
+    font-size: 1.5em;
+
+    padding: 2rem max(25%, 250px) 1rem;
+}
+
+.game-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls button:first-child {
+    --hover-color: var(--light-color);
+}
+.controls button:last-child {
+    --hover-color: var(--dark-color);
+}
+
+.controls button {
+    background-color: var(--white-light-color);
+    padding: 0.5rem 2rem;
+    margin: 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+
+    font-size: 1em;
+    font-weight: 600;
+}
+.controls button:hover {
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+.gameboard {
+    height: 30rem;
+    width: 30rem;
+
+    background-color: var(--white-light-color);
+
+    margin: 5rem;
 }
