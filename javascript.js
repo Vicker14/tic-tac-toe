@@ -46,6 +46,8 @@ const GameController = (() => {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
     }
 
+    let round = 0;
+
     const playRound = (index) => {
 
         if (GameBoard.getBoard()[index] === "-") {
@@ -58,15 +60,25 @@ const GameController = (() => {
                 currentPlayer.playerWins++;
                 displayPlayers();
                 GameController.resetGame();
-            } else switchTurn();
+            }
+            else if (tieCheck(round)) {
+                console.log("It is a tie");
+                GameController.resetGame();
+            }
+            else {
+                switchTurn();
+            }
+            round++;
         }
         else console.log("Jugada invalida");
-    }
+    };
 
     const resetGame = () => {
         GameBoard.reset();
+        clearGrid();
         currentPlayer = player1;
-    }
+        round = 0;
+    };
 
     const hasWinner = () => {
         const board = GameBoard.getBoard();
@@ -85,17 +97,54 @@ const GameController = (() => {
         ) return true;
 
         return false;
-    }
+    };
+    const tieCheck = (roundLitmit) => {
+        if (roundLitmit >= 8) return true;
+        return false;
+    };
 
     const displayPlayers = () => {
         const p1 = document.querySelector("#player1")
         const p2 = document.querySelector("#player2")
         
-        p1.textContent = `${player1.mark} ${player1.pName}: ${player1.playerWins}`
-        p2.textContent = `${player2.mark} ${player2.pName}: ${player2.playerWins}`
-    }
+        p1.textContent = `${player1.mark} | ${player1.playerWins}`
+        p2.textContent = `${player2.mark} | ${player2.playerWins}`
+    };
 
-    return {playRound, resetGame, displayPlayers}
+    const grid = document.querySelector("#grid");
+
+    const displayGrid = () => {
+
+        for (let i = 0; i < 9; i++) {
+
+            const element = document.createElement("div");
+            element.setAttribute("class", `cell${i}`);
+
+            element.addEventListener("click", () => {
+                if (GameBoard.getBoard()[i] === "-") {
+                    element.textContent = `${currentPlayer.mark}`
+                }
+                playRound(i);
+            })
+            grid.appendChild(element);
+        }
+    };
+    const clearGrid = () => {
+        const cells = grid.querySelectorAll("div");
+
+        for (let element of cells) {
+            element.textContent = "";
+        }
+    };
+    
+    return {playRound, resetGame, displayPlayers, displayGrid}
 }) ();
 
-GameController.displayPlayers();
+const startGame = document.querySelector(".start-game");
+startGame.addEventListener("click", () => {
+    GameController.displayGrid();
+    GameController.displayPlayers();
+});
+
+const restartGame = document.querySelector(".reset-game");
+restartGame.addEventListener("click", () => {GameController.resetGame()});
